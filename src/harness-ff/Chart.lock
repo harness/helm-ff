@@ -1,9 +1,9 @@
 dependencies:
 - name: ff-service
   repository: file://ff-service
-  version: 0.2.12
+  version: 0.2.14
 - name: ff-pushpin-service
   repository: file://ff-pushpin-service
   version: 0.2.7
-digest: sha256:b3ca9c3cb74d95acdb068dcde028c1782411066d5e520115061938935da8eecf
-generated: "2022-11-30T21:25:11.33601+05:30"
+digest: sha256:ee711e3630740631e92bebd956b59f2eb89d651c22c6745e7bfbb05b4dbb7036
+generated: "2022-12-01T01:03:12.193238+05:30"
