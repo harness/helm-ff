@@ -16,6 +16,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
+      {{ include "ff-service.pullSecrets" . | nindent 6 }}
       containers:
       - name: ff-service-db-migrate
         image: {{ include "common.images.image" (dict "imageRoot" .Values.jobs.postgres_migration.image "global" .Values.global) }}
@@ -86,6 +87,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
     spec:
+      {{ include "ff-service.pullSecrets" . | nindent 6 }}
       containers:
       - name: ff-service-timescale-db-migrate
         image: {{ include "common.images.image" (dict "imageRoot" .Values.jobs.timescaledb_migrate.image "global" .Values.global) }}
