@@ -3,6 +3,23 @@ entries:
   ff:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2022-12-28T14:09:48.499507114Z"
+    dependencies:
+    - name: ff-service
+      repository: file://../ff-service
+      version: 0.2.x
+    - name: ff-pushpin-service
+      repository: file://../ff-pushpin-service
+      version: 0.2.x
+    description: A Helm chart for harness Feature Flags module
+    digest: 880e3cede25a26b2770156c3c181f6fba322b4f392fb9a1981a5807cae587a26
+    name: ff
+    type: application
+    urls:
+    - https://github.com/harness/helm-ff/releases/download/ff-0.3.3/ff-0.3.3.tgz
+    version: 0.3.3
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2022-12-14T18:42:29.784977464Z"
     dependencies:
     - name: ff-service
@@ -52,6 +69,36 @@ entries:
     urls:
     - https://github.com/harness/helm-ff/releases/download/ff-0.3.0/ff-0.3.0.tgz
     version: 0.3.0
+  ff-pushpin-service:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-12-28T14:09:48.696954926Z"
+    dependencies:
+    - name: harness-common
+      repository: https://harness.github.io/helm-common
+      version: 1.x.x
+    description: A Helm chart for Kubernetes
+    digest: 57d607008e6572dab5a76e3b2a1e966b15410e2d69ece8a3e821d374cf7d367d
+    name: ff-pushpin-service
+    type: application
+    urls:
+    - https://github.com/harness/helm-ff/releases/download/ff-pushpin-service-0.2.8/ff-pushpin-service-0.2.8.tgz
+    version: 0.2.8
+  ff-service:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2022-12-28T14:09:48.850534524Z"
+    dependencies:
+    - name: harness-common
+      repository: https://harness.github.io/helm-common
+      version: 1.x.x
+    description: A Helm chart for Kubernetes
+    digest: 10ac42f601506b92a02f3cc211e8e921713b13cc394c65c29b19e2e0c034f342
+    name: ff-service
+    type: application
+    urls:
+    - https://github.com/harness/helm-ff/releases/download/ff-service-0.2.15/ff-service-0.2.15.tgz
+    version: 0.2.15
   harness-ff:
   - apiVersion: v2
     appVersion: 0.0.1
@@ -70,4 +117,4 @@ entries:
     urls:
     - https://github.com/harness/helm-ff/releases/download/harness-ff-0.3.0/harness-ff-0.3.0.tgz
     version: 0.3.0
-generated: "2022-12-14T18:42:29.784992764Z"
+generated: "2022-12-28T14:09:48.850548924Z"
