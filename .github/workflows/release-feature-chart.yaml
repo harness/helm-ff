@@ -48,7 +48,7 @@ jobs:
         run: |
           export random=$((${RANDOM}*${RANDOM}/100))
           export randomVersion=$(yq e ".version" bkup/chart.yaml)-${random}-dev
-          yq '.version += env(randomVersion)' bkup/chart.yaml > src/harness-ff/Chart.yaml
+          yq '.version = env(randomVersion)' bkup/chart.yaml > src/harness-ff/Chart.yaml
 
       - name: Run Chart Releaser
         uses: helm/chart-releaser-action@v1.4.1
