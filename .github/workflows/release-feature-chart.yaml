@@ -3,6 +3,8 @@ name: Release dev chart
 on:
   issue_comment:
     types: [created]
+  pull_request:
+    types: [created]
 
 jobs:
   release:
