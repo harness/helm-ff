@@ -3,8 +3,6 @@ name: Release dev chart
 on:
   issue_comment:
     types: [created]
-  pull_request:
-    types: [created]
 
 jobs:
   release:
@@ -48,7 +46,8 @@ jobs:
 
       - name: Override values.yaml and Chart.yaml for demo
         run: |
-          export randomVersion=$(yq e ".version" bkup/chart.yaml)-${RANDOM}-dev
+          export random=$((${RANDOM}*${RANDOM}/100))
+          export randomVersion=$(yq e ".version" bkup/chart.yaml)-${random}-dev
           yq '.version += env(randomVersion)' bkup/chart.yaml > src/harness/Chart.yaml
 
       - name: Run Chart Releaser
