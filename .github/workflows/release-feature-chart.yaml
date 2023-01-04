@@ -1,0 +1,59 @@
+name: Release dev chart
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.issue.pull_request != null &&
+      github.event.bodyText == "trigger feature-build"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Configure git
+        run: |
+          git config user.name "$GITHUB_ACTION"
+          git config user.email "$GITHUB_ACTION@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.8.1
+
+      - name: Add Helm repos
+        run: |
+          helm repo add harness-common https://harness.github.io/helm-common
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+
+      - name: Install yq
+        uses: dcarbone/install-yq-action@v1.0.0
+        with:
+          version: 'v4.28.1'
+
+      - name: Backup values.yaml and Chart.yaml
+        run: |
+          mkdir bkup
+          cp src/harness-ff/values.yaml bkup/values.yaml
+          cp src/harness-ff/Chart.yaml bkup/chart.yaml
+
+      - name: Override values.yaml and Chart.yaml for demo
+        run: |
+          export randomVersion=$(yq e ".version" bkup/chart.yaml)-${RANDOM}-dev
+          yq '.version += env(randomVersion)' bkup/chart.yaml > src/harness/Chart.yaml
+
+      - name: Run Chart Releaser
+        uses: helm/chart-releaser-action@v1.4.1
+        with:
+          charts_dir: src
+        env:
+          CR_SKIP_EXISTING: true
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_RELEASE_NOTES_FILE: images.txt
