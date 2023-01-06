@@ -1,6 +1,6 @@
 # ff-pushpin-service
 
-![Version: 0.2.7](https://img.shields.io/badge/Version-0.2.7-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 0.2.8](https://img.shields.io/badge/Version-0.2.8-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -24,6 +24,7 @@ A Helm chart for Kubernetes
 | fullnameOverride | string | `""` |  |
 | global.airgap | bool | `false` |  |
 | global.ha | bool | `false` |  |
+| global.imagePullSecrets | list | `[]` |  |
 | global.ingress.className | string | `"nginx"` |  |
 | global.ingress.enabled | bool | `false` |  |
 | global.ingress.hosts[0] | string | `"my-host.example.org"` |  |
@@ -38,6 +39,7 @@ A Helm chart for Kubernetes
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | pushpin.image.digest | string | `""` |  |
+| pushpin.image.imagePullSecrets | list | `[]` |  |
 | pushpin.image.pullPolicy | string | `"IfNotPresent"` |  |
 | pushpin.image.registry | string | `"docker.io"` |  |
 | pushpin.image.repository | string | `"harness/ff-pushpin-signed"` |  |
@@ -47,6 +49,7 @@ A Helm chart for Kubernetes
 | pushpin.resources.requests.cpu | int | `1` |  |
 | pushpin.resources.requests.memory | string | `"2048Mi"` |  |
 | pushpinworker.image.digest | string | `""` |  |
+| pushpinworker.image.imagePullSecrets | list | `[]` |  |
 | pushpinworker.image.pullPolicy | string | `"IfNotPresent"` |  |
 | pushpinworker.image.registry | string | `"docker.io"` |  |
 | pushpinworker.image.repository | string | `"harness/ff-pushpin-worker-signed"` |  |
@@ -70,6 +73,7 @@ A Helm chart for Kubernetes
 | serviceAccount.name | string | `"harness-default"` |  |
 | tolerations | list | `[]` |  |
 | waitForInitContainer.image.digest | string | `""` |  |
+| waitForInitContainer.image.imagePullSecrets | list | `[]` |  |
 | waitForInitContainer.image.pullPolicy | string | `"IfNotPresent"` |  |
 | waitForInitContainer.image.registry | string | `"docker.io"` |  |
 | waitForInitContainer.image.repository | string | `"harness/helm-init-container"` |  |
