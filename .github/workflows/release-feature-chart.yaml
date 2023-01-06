@@ -38,17 +38,49 @@ jobs:
         with:
           version: 'v4.28.1'
 
-      - name: Backup values.yaml and Chart.yaml
-        run: |
-          mkdir bkup
-          cp src/harness-ff/values.yaml bkup/values.yaml
-          cp src/harness-ff/Chart.yaml bkup/chart.yaml
-
       - name: Override values.yaml and Chart.yaml for demo
         run: |
-          export random=$((${RANDOM}*${RANDOM}/100))
-          export randomVersion=$(yq e ".version" bkup/chart.yaml)-${random}-dev
-          yq '.version = env(randomVersion)' bkup/chart.yaml > src/harness-ff/Chart.yaml
+          lookup_current_branch() {
+              git rev-parse --abbrev-ref HEAD
+          }
+
+          filter_charts() {
+              while read -r chart; do
+                  [[ ! -d "$chart" ]] && continue
+                  local file="$chart/Chart.yaml"
+                  if [[ -f "$file" ]]; then
+                      echo "$chart"
+                  else
+                    echo "WARNING: $file is missing, assuming that '$chart' is not a Helm chart. Skipping." 1>&2
+                  fi
+              done
+          }
+
+          lookup_changed_charts() {
+              local branch="$1"
+              local charts_dir="src"
+
+              local changed_files
+              changed_files=$(git diff --find-renames --name-only main..$branch -- "$charts_dir")
+
+              local depth=$(( $(tr "/" "\n" <<< "$charts_dir" | sed '/^\(\.\)*$/d' | wc -l) + 1 ))
+              local fields="1-${depth}"
+
+              cut -d '/' -f "$fields" <<< "$changed_files" | uniq | filter_charts
+          }
+
+          current_branch=$(lookup_current_branch)
+          echo $current_branch
+
+          declare -a changed_charts="$(lookup_changed_charts "$current_branch")"
+          for chart in $changed_charts
+          do 
+            if [ -d "$chart" ]; then
+              export random=$((${RANDOM}*${RANDOM}/100))
+              export randomVersion=$(yq e ".version" $chart/chart.yaml)-${random}-dev
+              yq -i '.version = env(randomVersion)' $chart/Chart.yaml
+            fi
+          done
 
       - name: Run Chart Releaser
         uses: helm/chart-releaser-action@v1.4.1
