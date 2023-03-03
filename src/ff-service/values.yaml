@@ -36,7 +36,7 @@ image:
   repository: harness/ff-server-signed
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "1.546.0"
+  tag: "1.945.0"
   digest: ""
   imagePullSecrets: []
 
@@ -44,7 +44,7 @@ jobs:
   postgres_migration:
     image:
       registry: docker.io
-      tag: "1.546.0"
+      tag: "1.945.0"
       repository: harness/ff-postgres-migration-signed
       pullPolicy: Always
       digest: ""
@@ -52,7 +52,7 @@ jobs:
   timescaledb_migrate:
     image:
       registry: docker.io
-      tag: "1.546.0"
+      tag: "1.945.0"
       repository: harness/ff-timescale-migration-signed
       pullPolicy: Always
       digest: ""
