@@ -40,7 +40,6 @@ pushpin:
     imagePullSecrets: []
   resources:
     limits:
-      cpu: 1
       memory: 2048Mi
     requests:
       cpu: 1
@@ -60,7 +59,6 @@ pushpinworker:
     runAsNonRoot: true
   resources:
     limits:
-      cpu: 1
       memory: 2048Mi
     requests:
       cpu: 1
