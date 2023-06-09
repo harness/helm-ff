@@ -19,7 +19,8 @@ A Helm chart for Kubernetes
 | autoscaling.enabled | bool | `false` |  |
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
-| autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| autoscaling.targetCPU | string | `""` |  |
+| autoscaling.targetMemory | string | `""` |  |
 | configmap | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
 | global.airgap | bool | `false` |  |
