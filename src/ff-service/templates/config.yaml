@@ -21,7 +21,6 @@ data:
   EVENTS_FRAMEWORK_REDIS_USE_SENTINEL: "true"
   EVENTS_FRAMEWORK_REDIS_SENTINEL_MASTER: 'harness-redis'
   EVENTS_FRAMEWORK_REDIS_SENTINEL_URLS: 'redis-sentinel-harness-announce-0.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-1.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-2.{{ .Release.Namespace  }}:26379'
-  SSL_MODE: disable
   GRIP_URL: "http://pushpin-clusterip:5561"
   PLATFORM_INTEGRATION_ENABLED: "true"
   PLATFORM_BASE_URL: 'http://ng-manager.{{ .Release.Namespace }}.svc.cluster.local:7090'
@@ -29,7 +28,6 @@ data:
   CLIENT_ENABLE: "true"
   METRICS_ENABLE: "true"
   METRICS_PROCESSING: "true"
-  ANALYTICS_SSL_MODE: disable
   ANALYTICS_DB_DRIVER: postgres
   LOG_LEVEL: {{ .Values.appLogLevel }}
   USE_CF_REDIS: "false"
@@ -40,12 +38,23 @@ data:
   GIT_SYNC_ENABLED: "true"
   GIT_SYNC_WEBHOOK_LISTEN_ADDR: "localhost:3001"
   SEGMENT_API_KEY: CFCommonVariable
+  {{- if .Values.global.database.timescaledb.installed }}
   ANALYTICS_DB_HOST: 'timescaledb-single-chart.{{ .Release.Namespace }}'
   ANALYTICS_DB_PORT: "5432"
-  ANALYTICS_DB_NAME: harnesscf
+  ANALYTICS_SSL_MODE: 'disable'
   DB_HOST: 'timescaledb-single-chart.{{ .Release.Namespace }}'
-  DB_NAME: cf_db
   DB_PORT: "5432"
+  SSL_MODE: 'disable'
+  {{- else }}
+  ANALYTICS_DB_HOST: {{ (split ":" (index .Values.global.database.timescaledb.hosts 0))._0 }}
+  ANALYTICS_DB_PORT: {{ (split ":" (index .Values.global.database.timescaledb.hosts 0))._1 | quote }}
+  ANALYTICS_SSL_MODE: 'require'
+  DB_HOST: {{ (split ":" (index .Values.global.database.timescaledb.hosts 0))._0 }}
+  DB_PORT: {{ (split ":" (index .Values.global.database.timescaledb.hosts 0))._1 | quote }}
+  SSL_MODE: 'require'
+  {{- end }}
+  DB_NAME: cf_db
+  ANALYTICS_DB_NAME: harnesscf
   PLATFORM_SECRET_KEY: IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM
   AUTH_SECRET: IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM
   {{- if .Values.global.opa.enabled }}

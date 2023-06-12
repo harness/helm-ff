@@ -16,6 +16,17 @@ global:
     tls:
       enabled: false
       secretName: harness-ssl
+  database:
+    timescaledb:
+      installed: false
+      protocol: "jdbc:postgresql"
+      # --  provide default values if mongo.installed is set to false
+      hosts:
+        - timescaledb-single-chart:543210
+      secretName: ""
+      userKey: ""
+      passwordKey: ""
+      extraArgs: ""
   imagePullSecrets: []
 
 replicaCount: 1

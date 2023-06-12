@@ -29,6 +29,7 @@ spec:
               configMapKeyRef:
                 name: ff-service
                 key: DB_DRIVER
+          {{- if .Values.global.database.timescaledb.installed }}
           - name : DB_PASS
             valueFrom:
               secretKeyRef:
@@ -36,6 +37,10 @@ spec:
                 key: {{ .Values.timescaleSecret.password.key }}
           - name: DB_USER
             value: postgres
+          {{- else }}
+          {{ include "harnesscommon.dbconnection.dbenvuser" (dict "type" "timescale" "variableName" "DB_USER" "secret" .Values.global.database.timescaledb.secretName "userKey" .Values.global.database.timescaledb.userKey ) | nindent 10 }}
+          {{ include "harnesscommon.dbconnection.dbenvpassword" (dict "type" "timescale" "variableName" "DB_PASS" "secret" .Values.global.database.timescaledb.secretName "passwordKey" .Values.global.database.timescaledb.passwordKey ) | nindent 10 }}
+          {{- end }}
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:
@@ -100,6 +105,7 @@ spec:
               configMapKeyRef:
                 name: ff-service
                 key: ANALYTICS_DB_DRIVER
+          {{- if .Values.global.database.timescaledb.installed }}
           - name : DB_PASS
             valueFrom:
               secretKeyRef:
@@ -107,6 +113,10 @@ spec:
                 key: {{ .Values.timescaleSecret.password.key }}
           - name: DB_USER
             value: postgres
+          {{- else }}
+          {{ include "harnesscommon.dbconnection.dbenvuser" (dict "type" "timescale" "variableName" "DB_USER" "secret" .Values.global.database.timescaledb.secretName "userKey" .Values.global.database.timescaledb.userKey ) | nindent 10 }}
+          {{ include "harnesscommon.dbconnection.dbenvpassword" (dict "type" "timescale" "variableName" "DB_PASS" "secret" .Values.global.database.timescaledb.secretName "passwordKey" .Values.global.database.timescaledb.passwordKey ) | nindent 10 }}
+          {{- end }}
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:

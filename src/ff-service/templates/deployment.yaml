@@ -37,18 +37,14 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       terminationGracePeriodSeconds: 30
       initContainers:
-      - name: wait-for-mongo
-        image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
-        imagePullPolicy: IfNotPresent
-        args:
-          - "pod"
-          - "-lapp=mongodb-replicaset"
+      {{- if .Values.global.database.timescaledb.installed }}
       - name: wait-for-timescale
         image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
         imagePullPolicy: IfNotPresent
         args:
           - "pod"
           - "-lapp=timescaledb-single-chart"
+        {{- end }}
       - name: wait-for-redis
         image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
         imagePullPolicy: IfNotPresent
@@ -77,6 +73,7 @@ spec:
           resources:
               {{- toYaml .Values.resources | nindent 12 }}
           env:
+            {{- if .Values.global.database.timescaledb.installed }}
             - name : ANALYTICS_DB_PASS
               valueFrom:
                 secretKeyRef:
@@ -91,6 +88,12 @@ spec:
                   key: {{ .Values.timescaleSecret.password.key }}
             - name: DB_USER
               value: postgres
+            {{- else }}
+            {{ include "harnesscommon.dbconnection.dbenvuser" (dict "type" "timescale" "variableName" "ANALYTICS_DB_USER" "secret" .Values.global.database.timescaledb.secretName "userKey" .Values.global.database.timescaledb.userKey ) | nindent 12 }}
+            {{ include "harnesscommon.dbconnection.dbenvpassword" (dict "type" "timescale" "variableName" "ANALYTICS_DB_PASS" "secret" .Values.global.database.timescaledb.secretName "passwordKey" .Values.global.database.timescaledb.passwordKey ) | nindent 12 }}
+            {{ include "harnesscommon.dbconnection.dbenvuser" (dict "type" "timescale" "variableName" "DB_USER" "secret" .Values.global.database.timescaledb.secretName "userKey" .Values.global.database.timescaledb.userKey ) | nindent 12 }}
+            {{ include "harnesscommon.dbconnection.dbenvpassword" (dict "type" "timescale" "variableName" "DB_PASS" "secret" .Values.global.database.timescaledb.secretName "passwordKey" .Values.global.database.timescaledb.passwordKey ) | nindent 12 }}
+            {{- end }}
           envFrom:
           - configMapRef:
               name: ff-service
