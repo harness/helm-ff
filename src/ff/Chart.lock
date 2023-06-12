@@ -1,9 +1,0 @@
-dependencies:
-- name: ff-service
-  repository: file://../ff-service
-  version: 0.3.0
-- name: ff-pushpin-service
-  repository: file://../ff-pushpin-service
-  version: 0.3.0
-digest: sha256:bfe5a8d752214f4742d07afeab887720b346f1881b7a7a9384e431d37bc6710f
-generated: "2023-03-14T00:06:41.539209+05:30"
