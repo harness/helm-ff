@@ -51,12 +51,14 @@ spec:
         args:
           - "pod"
           - "-lapp=timescaledb-single-chart"
+      {{- if .Values.global.database.redis.installed }}
       - name: wait-for-redis
         image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
         imagePullPolicy: IfNotPresent
         args:
           - "pod"
           - "-lapp=redis-sentinel"
+      {{- end }}
       containers:
         - name: ff-pushpin
           image: {{ include "ff-pushpin-service.pushpinImage" . }}
@@ -73,6 +75,8 @@ spec:
             - containerPort: 5555
           resources:
               {{- toYaml .Values.pushpin.resources | nindent 12 }}
+          env:
+            {{- include "harnesscommon.dbconnection.redisEnv" (dict "context" .Values.global.database.redis "userVariableName" "EVENTS_CONFIG_REDIS_USERNAME" "passwordVariableName" "EVENTS_FRAMEWORK_REDIS_PASSWORD") | indent 12 }}
           envFrom:
           - configMapRef:
               name: ff-pushpin
@@ -92,6 +96,8 @@ spec:
               protocol: "TCP"
           resources:
               {{- toYaml .Values.pushpin.resources | nindent 12 }}
+          env:
+            {{- include "harnesscommon.dbconnection.redisEnv" (dict "context" .Values.global.database.redis "userVariableName" "EVENTS_CONFIG_REDIS_USERNAME" "passwordVariableName" "EVENTS_FRAMEWORK_REDIS_PASSWORD") | indent 12 }}
           envFrom:
           - configMapRef:
               name: ff-pushpin-worker

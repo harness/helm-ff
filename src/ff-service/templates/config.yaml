@@ -18,9 +18,10 @@ data:
   REDIS_STREAM_CONCURRENCY: "100"
   EVENTS_FRAMEWORK_REDIS_SSL_ENABLED: "false"
   EVENTS_FRAMEWORK_USE_REDIS_PASSWORD: "false"
-  EVENTS_FRAMEWORK_REDIS_USE_SENTINEL: "true"
+  EVENTS_FRAMEWORK_REDIS_USE_SENTINEL: {{ .Values.global.database.redis.installed | quote }}
   EVENTS_FRAMEWORK_REDIS_SENTINEL_MASTER: 'harness-redis'
-  EVENTS_FRAMEWORK_REDIS_SENTINEL_URLS: 'redis-sentinel-harness-announce-0.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-1.{{ .Release.Namespace }}:26379,redis://redis-sentinel-harness-announce-2.{{ .Release.Namespace  }}:26379'
+  REDIS_URL: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" .Values.global.database.redis) }}
+  EVENTS_FRAMEWORK_REDIS_SENTINEL_URLS: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" .Values.global.database.redis) }}
   SSL_MODE: disable
   GRIP_URL: "http://pushpin-clusterip:5561"
   PLATFORM_INTEGRATION_ENABLED: "true"

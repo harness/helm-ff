@@ -125,6 +125,14 @@ dependencies:
 | ff-service.waitForInitContainer.image.repository | string | `"harness/helm-init-container"` |  |
 | ff-service.waitForInitContainer.image.tag | string | `"latest"` |  |
 | global.airgap | bool | `false` |  |
+| global.database.mongo.installed | bool | `true` |  |
+| global.database.redis.extraArgs | string | `""` |  |
+| global.database.redis.hosts | list | `["redis:6379"]` | provide default values if redis.installed is set to false |
+| global.database.redis.installed | bool | `true` |  |
+| global.database.redis.passwordKey | string | `"redis-password"` |  |
+| global.database.redis.protocol | string | `"redis"` |  |
+| global.database.redis.secretName | string | `"redis-secret"` |  |
+| global.database.redis.userKey | string | `"redis-user"` |  |
 | global.ha | bool | `false` |  |
 | global.ingress.className | string | `"nginx"` |  |
 | global.ingress.enabled | bool | `false` |  |
