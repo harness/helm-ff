@@ -51,12 +51,14 @@ spec:
         args:
           - "pod"
           - "-lapp=timescaledb-single-chart"
+      {{- if .Values.global.database.redis.installed }}
       - name: wait-for-redis
         image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
         imagePullPolicy: IfNotPresent
         args:
           - "pod"
           - "-lapp=redis-sentinel"
+      {{- end }}
       - name: wait-for-ng-manager
         image: {{ include "common.images.image" (dict "imageRoot" .Values.waitForInitContainer.image "global" .Values.global) }}
         imagePullPolicy: IfNotPresent
@@ -79,6 +81,7 @@ spec:
           resources:
               {{- toYaml .Values.resources | nindent 12 }}
           env:
+            {{- include "harnesscommon.dbconnection.redisEnv" (dict "context" .Values.global.database.redis "userVariableName" "EVENTS_CONFIG_REDIS_USERNAME" "passwordVariableName" "EVENTS_FRAMEWORK_REDIS_PASSWORD") | indent 12 }}
             - name : ANALYTICS_DB_PASS
               valueFrom:
                 secretKeyRef:
