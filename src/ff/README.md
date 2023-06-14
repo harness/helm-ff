@@ -2,7 +2,7 @@
 
 A Helm chart for harness Feature Flags module
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 0.7.2](https://img.shields.io/badge/Version-0.7.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 ## Usage
 
@@ -24,7 +24,8 @@ dependencies:
 | ff-pushpin-service.autoscaling.enabled | bool | `false` |  |
 | ff-pushpin-service.autoscaling.maxReplicas | int | `100` |  |
 | ff-pushpin-service.autoscaling.minReplicas | int | `1` |  |
-| ff-pushpin-service.autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| ff-pushpin-service.autoscaling.targetCPU | string | `""` |  |
+| ff-pushpin-service.autoscaling.targetMemory | string | `""` |  |
 | ff-pushpin-service.configmap | object | `{}` |  |
 | ff-pushpin-service.fullnameOverride | string | `""` |  |
 | ff-pushpin-service.maxSurge | int | `1` |  |
@@ -76,7 +77,8 @@ dependencies:
 | ff-service.autoscaling.enabled | bool | `false` |  |
 | ff-service.autoscaling.maxReplicas | int | `100` |  |
 | ff-service.autoscaling.minReplicas | int | `1` |  |
-| ff-service.autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| ff-service.autoscaling.targetCPU | string | `""` |  |
+| ff-service.autoscaling.targetMemory | string | `""` |  |
 | ff-service.configmap | object | `{}` |  |
 | ff-service.fullnameOverride | string | `""` |  |
 | ff-service.image.digest | string | `""` |  |
