@@ -111,8 +111,8 @@ ff-pushpin-service:
     enabled: false
     minReplicas: 1
     maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
+    targetCPU: ""
+    targetMemory: ""
 
   nodeSelector: {}
 
@@ -214,8 +214,8 @@ ff-service:
     enabled: false
     minReplicas: 1
     maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
+    targetCPU: ""
+    targetMemory: ""
 
   nodeSelector: {}
 
