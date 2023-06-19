@@ -9,7 +9,7 @@ data:
   MEMORY: '{{ .Values.memory }}m'
   EVENT_BUS: msg-broker
   MSG_BROKER_PROVIDER: redis
-  # Protocol needs to be set to empty because ti-service uses go-redis library which doesn't accept protocol based strings
+  # Protocol needs to be set to empty because service uses redis library which doesn't accept protocol based strings
   {{- $dbContext := deepCopy .Values.global.database.redis }}
   {{- $_ := set $dbContext "protocol" "" }}
   MSG_BROKER_URL: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
