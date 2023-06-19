@@ -35,7 +35,7 @@ pushpin:
     repository: harness/ff-pushpin-signed
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "1.0.3"
+    tag: "1.0.11"
     digest: ""
     imagePullSecrets: []
   resources:
@@ -52,7 +52,7 @@ pushpinworker:
     repository: harness/ff-pushpin-worker-signed
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "1.945.0"
+    tag: "1.1073.0"
     digest: ""
     imagePullSecrets: []
   securityContext:
