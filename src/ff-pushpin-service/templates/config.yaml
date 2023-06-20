@@ -9,7 +9,10 @@ data:
   MEMORY: '{{ .Values.memory }}m'
   EVENT_BUS: msg-broker
   MSG_BROKER_PROVIDER: redis
-  MSG_BROKER_URL: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" .Values.global.database.redis) }}
+  # Protocol needs to be set to empty because service uses redis library which doesn't accept protocol based strings
+  {{- $dbContext := deepCopy .Values.global.database.redis }}
+  {{- $_ := set $dbContext "protocol" "" }}
+  MSG_BROKER_URL: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   REDIS_STREAM_MAX_LENGTH: "10000"
   REDIS_STREAM_APPROX_LENGTH: "true"
   REDIS_STREAM_VISIBILITY_TIMEOUT: 5s
@@ -18,11 +21,11 @@ data:
   REDIS_STREAM_BUFFER_SIZE: "100"
   REDIS_STREAM_CONCURRENCY: "100"
   EVENTS_FRAMEWORK_REDIS_SSL_ENABLED: "false"
-  EVENTS_FRAMEWORK_USE_REDIS_PASSWORD: "false"
+  EVENTS_FRAMEWORK_USE_REDIS_PASSWORD: {{ not .Values.global.database.redis.installed | quote }}
   EVENTS_FRAMEWORK_ENV_NAMESPACE: ""
   EVENTS_FRAMEWORK_REDIS_USE_SENTINEL: {{ .Values.global.database.redis.installed | quote }}
   EVENTS_FRAMEWORK_REDIS_SENTINEL_MASTER: 'harness-redis'
-  EVENTS_FRAMEWORK_REDIS_SENTINEL_URLS: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" .Values.global.database.redis) }}
+  EVENTS_FRAMEWORK_REDIS_SENTINEL_URLS: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
 {{- if .Values.configmap }}
 {{- include "common.tplvalues.render" (dict "value" .Values.configmap "context" $) | nindent 4 }}
 {{- end }}
