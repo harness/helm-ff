@@ -46,7 +46,7 @@ ff-pushpin-service:
       repository: harness/ff-pushpin-signed
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "1.0.3"
+      tag: "1.0.11"
       digest: ""
     resources:
       limits:
@@ -61,7 +61,7 @@ ff-pushpin-service:
       repository: harness/ff-pushpin-worker-signed
       pullPolicy: IfNotPresent
       # Overrides the image tag whose default is the chart appVersion.
-      tag: "1.945.0"
+      tag: "1.1075.0"
       digest: ""
     securityContext:
       runAsUser: 65534
@@ -136,21 +136,21 @@ ff-service:
     repository: harness/ff-server-signed
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "1.945.0"
+    tag: "1.1075.0"
     digest: ""
 
   jobs:
     postgres_migration:
       image:
         registry: docker.io
-        tag: "1.945.0"
+        tag: "1.1075.0"
         repository: harness/ff-postgres-migration-signed
         pullPolicy: Always
         digest: ""
     timescaledb_migrate:
       image:
         registry: docker.io
-        tag: "1.945.0"
+        tag: "1.1075.0"
         repository: harness/ff-timescale-migration-signed
         pullPolicy: Always
         digest: ""
