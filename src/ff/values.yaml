@@ -145,14 +145,14 @@ ff-service:
     postgres_migration:
       image:
         registry: docker.io
-        tag: "1.1075.0"
+        tag: "1.1075.1"
         repository: harness/ff-postgres-migration-signed
         pullPolicy: Always
         digest: ""
     timescaledb_migrate:
       image:
         registry: docker.io
-        tag: "1.1075.0"
+        tag: "1.1075.1"
         repository: harness/ff-timescale-migration-signed
         pullPolicy: Always
         digest: ""
