@@ -2,7 +2,7 @@
 
 A Helm chart for harness Feature Flags module
 
-![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 0.7.2](https://img.shields.io/badge/Version-0.7.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 ## Usage
 
@@ -24,7 +24,8 @@ dependencies:
 | ff-pushpin-service.autoscaling.enabled | bool | `false` |  |
 | ff-pushpin-service.autoscaling.maxReplicas | int | `100` |  |
 | ff-pushpin-service.autoscaling.minReplicas | int | `1` |  |
-| ff-pushpin-service.autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| ff-pushpin-service.autoscaling.targetCPU | string | `""` |  |
+| ff-pushpin-service.autoscaling.targetMemory | string | `""` |  |
 | ff-pushpin-service.configmap | object | `{}` |  |
 | ff-pushpin-service.fullnameOverride | string | `""` |  |
 | ff-pushpin-service.maxSurge | int | `1` |  |
@@ -76,7 +77,8 @@ dependencies:
 | ff-service.autoscaling.enabled | bool | `false` |  |
 | ff-service.autoscaling.maxReplicas | int | `100` |  |
 | ff-service.autoscaling.minReplicas | int | `1` |  |
-| ff-service.autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| ff-service.autoscaling.targetCPU | string | `""` |  |
+| ff-service.autoscaling.targetMemory | string | `""` |  |
 | ff-service.configmap | object | `{}` |  |
 | ff-service.fullnameOverride | string | `""` |  |
 | ff-service.image.digest | string | `""` |  |
@@ -125,6 +127,14 @@ dependencies:
 | ff-service.waitForInitContainer.image.repository | string | `"harness/helm-init-container"` |  |
 | ff-service.waitForInitContainer.image.tag | string | `"latest"` |  |
 | global.airgap | bool | `false` |  |
+| global.database.mongo.installed | bool | `true` |  |
+| global.database.redis.extraArgs | string | `""` |  |
+| global.database.redis.hosts | list | `["redis:6379"]` | provide default values if redis.installed is set to false |
+| global.database.redis.installed | bool | `true` |  |
+| global.database.redis.passwordKey | string | `"redis-password"` |  |
+| global.database.redis.protocol | string | `"redis"` |  |
+| global.database.redis.secretName | string | `"redis-secret"` |  |
+| global.database.redis.userKey | string | `"redis-user"` |  |
 | global.ha | bool | `false` |  |
 | global.ingress.className | string | `"nginx"` |  |
 | global.ingress.enabled | bool | `false` |  |

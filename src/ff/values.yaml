@@ -13,6 +13,19 @@ global:
     tls:
       enabled: false
       secretName: harness-ssl
+  database:
+    mongo:
+      installed: true
+    redis:
+      installed: true
+      protocol: "redis"
+      # --  provide default values if redis.installed is set to false
+      hosts:
+        - redis:6379
+      secretName: "redis-secret"
+      userKey: "redis-user"
+      passwordKey: "redis-password"
+      extraArgs: ""
 
 ff-pushpin-service:
   replicaCount: 1
@@ -37,7 +50,6 @@ ff-pushpin-service:
       digest: ""
     resources:
       limits:
-        cpu: 1
         memory: 2048Mi
       requests:
         cpu: 1
@@ -56,7 +68,6 @@ ff-pushpin-service:
       runAsNonRoot: true
     resources:
       limits:
-        cpu: 1
         memory: 2048Mi
       requests:
         cpu: 1
@@ -98,8 +109,8 @@ ff-pushpin-service:
     enabled: false
     minReplicas: 1
     maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
+    targetCPU: ""
+    targetMemory: ""
 
   nodeSelector: {}
 
@@ -191,7 +202,6 @@ ff-service:
 
   resources:
     limits:
-      cpu: 1
       memory: 2048Mi
     requests:
       cpu: 1
@@ -201,8 +211,8 @@ ff-service:
     enabled: false
     minReplicas: 1
     maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
+    targetCPU: ""
+    targetMemory: ""
 
   nodeSelector: {}
 
