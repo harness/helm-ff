@@ -54,7 +54,7 @@ A Helm chart for Kubernetes
 | pushpinworker.image.pullPolicy | string | `"IfNotPresent"` |  |
 | pushpinworker.image.registry | string | `"docker.io"` |  |
 | pushpinworker.image.repository | string | `"harness/ff-pushpin-worker-signed"` |  |
-| pushpinworker.image.tag | string | `"1.945.0"` |  |
+| pushpinworker.image.tag | string | `"1.1073.0"` |  |
 | pushpinworker.resources.limits.cpu | int | `1` |  |
 | pushpinworker.resources.limits.memory | string | `"2048Mi"` |  |
 | pushpinworker.resources.requests.cpu | int | `1` |  |
