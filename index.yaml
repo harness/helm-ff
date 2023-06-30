@@ -3,6 +3,23 @@ entries:
   ff:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-06-30T05:27:45.972447225Z"
+    dependencies:
+    - name: ff-service
+      repository: file://../ff-service
+      version: 0.5.x
+    - name: ff-pushpin-service
+      repository: file://../ff-pushpin-service
+      version: 0.5.x
+    description: A Helm chart for harness Feature Flags module
+    digest: f7a83c9f1ad77a8871ab5c5c5788ca0c4469445bc361ca5792bf61a669f5b1c6
+    name: ff
+    type: application
+    urls:
+    - https://github.com/harness/helm-ff/releases/download/ff-0.8.5/ff-0.8.5.tgz
+    version: 0.8.5
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-06-14T18:59:05.150694582Z"
     dependencies:
     - name: ff-service
@@ -320,4 +337,4 @@ entries:
     urls:
     - https://github.com/harness/helm-ff/releases/download/harness-ff-0.3.0/harness-ff-0.3.0.tgz
     version: 0.3.0
-generated: "2023-06-14T18:59:05.538739774Z"
+generated: "2023-06-30T05:27:46.315654307Z"
