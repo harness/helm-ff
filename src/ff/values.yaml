@@ -50,7 +50,6 @@ ff-pushpin-service:
       digest: ""
     resources:
       limits:
-        cpu: 1
         memory: 2048Mi
       requests:
         cpu: 1
@@ -69,7 +68,6 @@ ff-pushpin-service:
       runAsNonRoot: true
     resources:
       limits:
-        cpu: 1
         memory: 2048Mi
       requests:
         cpu: 1
@@ -204,7 +202,6 @@ ff-service:
 
   resources:
     limits:
-      cpu: 1
       memory: 2048Mi
     requests:
       cpu: 1
