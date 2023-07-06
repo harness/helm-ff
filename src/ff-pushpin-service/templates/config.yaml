@@ -12,6 +12,12 @@ data:
   # Protocol needs to be set to empty because service uses redis library which doesn't accept protocol based strings
   {{- $dbContext := deepCopy .Values.global.database.redis }}
   {{- $_ := set $dbContext "protocol" "" }}
+  DB_DRIVER: postgres
+  DB_HOST: 'timescaledb-single-chart.{{ .Release.Namespace }}'
+  DB_NAME: cf_db
+  DB_PASS: postgres
+  DB_PORT: "5432"
+  DB_USER: postgres
   MSG_BROKER_URL: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   REDIS_STREAM_MAX_LENGTH: "10000"
   REDIS_STREAM_APPROX_LENGTH: "true"
