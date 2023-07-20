@@ -42,6 +42,8 @@ data:
   CF_REDIS_SENTINEL_URLS: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   CF_REDIS_URL: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   CF_REDIS_USE_SENTINEL: "true"
+  CUSTOM_RULES_ENABLED: "true"
+  CACHE_PROVIDER_URLS: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   ACCESS_CONTROL_SERVICE: 'http://access-control.{{ .Release.Namespace }}.svc.cluster.local:9006'
   ACCESS_CONTROL_BASE_PATH: "/api"
   GIT_SYNC_URL: "ng-manager:13002"
