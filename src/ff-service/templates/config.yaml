@@ -24,7 +24,6 @@ data:
   EVENTS_FRAMEWORK_USE_REDIS_PASSWORD: {{ include "harnesscommon.dbconnection.isRedisPasswordSet" (dict "context" $dbContext) | quote }}
   EVENTS_FRAMEWORK_REDIS_USE_SENTINEL: {{ .Values.global.database.redis.installed | quote }}
   EVENTS_FRAMEWORK_REDIS_SENTINEL_MASTER: 'harness-redis'
-  REDIS_URL: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   EVENTS_FRAMEWORK_REDIS_SENTINEL_URLS: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   SSL_MODE: disable
   GRIP_URL: "http://pushpin-clusterip:5561"
@@ -37,11 +36,12 @@ data:
   ANALYTICS_SSL_MODE: disable
   ANALYTICS_DB_DRIVER: postgres
   LOG_LEVEL: {{ .Values.appLogLevel }}
-  USE_CF_REDIS: "false"
+  USE_CF_REDIS: {{ not .Values.global.database.redis.installed | quote }}
+  CF_REDIS_USE_SENTINEL: {{ .Values.global.database.redis.installed | quote }}
   CF_REDIS_SENTINEL_MASTER: harness-redis
   CF_REDIS_SENTINEL_URLS: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   CF_REDIS_URL: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
-  CF_REDIS_USE_SENTINEL: "true"
+  CF_REDIS_USE_PASSWORD: {{ include "harnesscommon.dbconnection.isRedisPasswordSet" (dict "context" $dbContext) | quote }}
   CUSTOM_RULES_ENABLED: "true"
   CACHE_PROVIDER_URLS: {{ include "harnesscommon.dbconnection.redisConnection" (dict "context" $dbContext) }}
   ACCESS_CONTROL_SERVICE: 'http://access-control.{{ .Release.Namespace }}.svc.cluster.local:9006'
