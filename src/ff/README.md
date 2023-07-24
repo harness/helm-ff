@@ -93,7 +93,7 @@ dependencies:
 | ff-service.jobs.timescaledb_migrate.image.pullPolicy | string | `"Always"` |  |
 | ff-service.jobs.timescaledb_migrate.image.registry | string | `"docker.io"` |  |
 | ff-service.jobs.timescaledb_migrate.image.repository | string | `"harness/ff-timescale-migration-signed"` |  |
-| ff-service.jobs.timescaledb_migrate.image.tag | string | `"1.1076.0"` |  |
+| ff-service.jobs.timescaledb_migrate.image.tag | string | `"1.945.0"` |  |
 | ff-service.maxSurge | int | `1` |  |
 | ff-service.maxUnavailable | int | `0` |  |
 | ff-service.memory | int | `4096` |  |
