@@ -28,7 +28,7 @@ data:
   REDIS_STREAM_BUFFER_SIZE: "100"
   REDIS_STREAM_CONCURRENCY: "100"
   EVENTS_FRAMEWORK_REDIS_SSL_ENABLED: "false"
-  EVENTS_FRAMEWORK_USE_REDIS_PASSWORD: {{ not .Values.global.database.redis.installed | quote }}
+  EVENTS_FRAMEWORK_USE_REDIS_PASSWORD: {{ include "harnesscommon.dbconnection.isRedisPasswordSet" (dict "context" $dbContext) | quote }}
   EVENTS_FRAMEWORK_ENV_NAMESPACE: ""
   EVENTS_FRAMEWORK_REDIS_USE_SENTINEL: {{ .Values.global.database.redis.installed | quote }}
   EVENTS_FRAMEWORK_REDIS_SENTINEL_MASTER: 'harness-redis'
