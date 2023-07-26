@@ -22,8 +22,19 @@ A Helm chart for Kubernetes
 | autoscaling.targetCPU | string | `""` |  |
 | autoscaling.targetMemory | string | `""` |  |
 | configmap | object | `{}` |  |
+| extraVolumeMounts | list | `[]` |  |
+| extraVolumes | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | global.airgap | bool | `false` |  |
+| global.database.mongo.installed | bool | `true` |  |
+| global.database.redis.extraArgs | string | `""` |  |
+| global.database.redis.hosts | list | `["redis:6379"]` | provide default values if redis.installed is set to false |
+| global.database.redis.installed | bool | `true` |  |
+| global.database.redis.passwordKey | string | `"redis-password"` |  |
+| global.database.redis.protocol | string | `"redis"` |  |
+| global.database.redis.secretName | string | `"redis-secret"` |  |
+| global.database.redis.userKey | string | `"redis-user"` |  |
+| global.database.timescaledb.installed | bool | `true` |  |
 | global.ha | bool | `false` |  |
 | global.imagePullSecrets | list | `[]` |  |
 | global.ingress.className | string | `"nginx"` |  |
@@ -51,6 +62,7 @@ A Helm chart for Kubernetes
 | jobs.timescaledb_migrate.image.registry | string | `"docker.io"` |  |
 | jobs.timescaledb_migrate.image.repository | string | `"harness/ff-timescale-migration-signed"` |  |
 | jobs.timescaledb_migrate.image.tag | string | `"1.1075.4"` |  |
+| lifecycleHooks | object | `{}` |  |
 | maxSurge | int | `1` |  |
 | maxUnavailable | int | `0` |  |
 | memory | int | `4096` |  |
@@ -59,7 +71,6 @@ A Helm chart for Kubernetes
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
-| resources.limits.cpu | int | `1` |  |
 | resources.limits.memory | string | `"2048Mi"` |  |
 | resources.requests.cpu | int | `1` |  |
 | resources.requests.memory | string | `"2048Mi"` |  |

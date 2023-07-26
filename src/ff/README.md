@@ -2,7 +2,7 @@
 
 A Helm chart for harness Feature Flags module
 
-![Version: 0.7.2](https://img.shields.io/badge/Version-0.7.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
+![Version: 0.8.5](https://img.shields.io/badge/Version-0.8.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.0.1](https://img.shields.io/badge/AppVersion-0.0.1-informational?style=flat-square)
 
 ## Usage
 
@@ -39,8 +39,7 @@ dependencies:
 | ff-pushpin-service.pushpin.image.pullPolicy | string | `"IfNotPresent"` |  |
 | ff-pushpin-service.pushpin.image.registry | string | `"docker.io"` |  |
 | ff-pushpin-service.pushpin.image.repository | string | `"harness/ff-pushpin-signed"` |  |
-| ff-pushpin-service.pushpin.image.tag | string | `"1.0.3"` |  |
-| ff-pushpin-service.pushpin.resources.limits.cpu | int | `1` |  |
+| ff-pushpin-service.pushpin.image.tag | string | `"1.0.11"` |  |
 | ff-pushpin-service.pushpin.resources.limits.memory | string | `"2048Mi"` |  |
 | ff-pushpin-service.pushpin.resources.requests.cpu | int | `1` |  |
 | ff-pushpin-service.pushpin.resources.requests.memory | string | `"2048Mi"` |  |
@@ -48,8 +47,7 @@ dependencies:
 | ff-pushpin-service.pushpinworker.image.pullPolicy | string | `"IfNotPresent"` |  |
 | ff-pushpin-service.pushpinworker.image.registry | string | `"docker.io"` |  |
 | ff-pushpin-service.pushpinworker.image.repository | string | `"harness/ff-pushpin-worker-signed"` |  |
-| ff-pushpin-service.pushpinworker.image.tag | string | `"1.1075.0"` |  |
-| ff-pushpin-service.pushpinworker.resources.limits.cpu | int | `1` |  |
+| ff-pushpin-service.pushpinworker.image.tag | string | `"1.1075.4"` |  |
 | ff-pushpin-service.pushpinworker.resources.limits.memory | string | `"2048Mi"` |  |
 | ff-pushpin-service.pushpinworker.resources.requests.cpu | int | `1` |  |
 | ff-pushpin-service.pushpinworker.resources.requests.memory | string | `"2048Mi"` |  |
@@ -85,17 +83,17 @@ dependencies:
 | ff-service.image.pullPolicy | string | `"IfNotPresent"` |  |
 | ff-service.image.registry | string | `"docker.io"` |  |
 | ff-service.image.repository | string | `"harness/ff-server-signed"` |  |
-| ff-service.image.tag | string | `"1.1075.0"` |  |
+| ff-service.image.tag | string | `"1.1075.4"` |  |
 | ff-service.jobs.postgres_migration.image.digest | string | `""` |  |
 | ff-service.jobs.postgres_migration.image.pullPolicy | string | `"Always"` |  |
 | ff-service.jobs.postgres_migration.image.registry | string | `"docker.io"` |  |
 | ff-service.jobs.postgres_migration.image.repository | string | `"harness/ff-postgres-migration-signed"` |  |
-| ff-service.jobs.postgres_migration.image.tag | string | `"1.1075.0"` |  |
+| ff-service.jobs.postgres_migration.image.tag | string | `"1.1075.4"` |  |
 | ff-service.jobs.timescaledb_migrate.image.digest | string | `""` |  |
 | ff-service.jobs.timescaledb_migrate.image.pullPolicy | string | `"Always"` |  |
 | ff-service.jobs.timescaledb_migrate.image.registry | string | `"docker.io"` |  |
 | ff-service.jobs.timescaledb_migrate.image.repository | string | `"harness/ff-timescale-migration-signed"` |  |
-| ff-service.jobs.timescaledb_migrate.image.tag | string | `"1.1075.0"` |  |
+| ff-service.jobs.timescaledb_migrate.image.tag | string | `"1.1075.4"` |  |
 | ff-service.maxSurge | int | `1` |  |
 | ff-service.maxUnavailable | int | `0` |  |
 | ff-service.memory | int | `4096` |  |
@@ -104,7 +102,6 @@ dependencies:
 | ff-service.podAnnotations | object | `{}` |  |
 | ff-service.podSecurityContext | object | `{}` |  |
 | ff-service.replicaCount | int | `1` |  |
-| ff-service.resources.limits.cpu | int | `1` |  |
 | ff-service.resources.limits.memory | string | `"2048Mi"` |  |
 | ff-service.resources.requests.cpu | int | `1` |  |
 | ff-service.resources.requests.memory | string | `"2048Mi"` |  |

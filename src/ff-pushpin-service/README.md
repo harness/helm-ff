@@ -22,8 +22,19 @@ A Helm chart for Kubernetes
 | autoscaling.targetCPU | string | `""` |  |
 | autoscaling.targetMemory | string | `""` |  |
 | configmap | object | `{}` |  |
+| extraVolumeMounts | list | `[]` |  |
+| extraVolumes | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | global.airgap | bool | `false` |  |
+| global.database.mongo.installed | bool | `true` |  |
+| global.database.redis.extraArgs | string | `""` |  |
+| global.database.redis.hosts | list | `["redis:6379"]` | provide default values if redis.installed is set to false |
+| global.database.redis.installed | bool | `true` |  |
+| global.database.redis.passwordKey | string | `"redis-password"` |  |
+| global.database.redis.protocol | string | `"redis"` |  |
+| global.database.redis.secretName | string | `"redis-secret"` |  |
+| global.database.redis.userKey | string | `"redis-user"` |  |
+| global.database.timescaledb.installed | bool | `true` |  |
 | global.ha | bool | `false` |  |
 | global.imagePullSecrets | list | `[]` |  |
 | global.ingress.className | string | `"nginx"` |  |
@@ -32,6 +43,7 @@ A Helm chart for Kubernetes
 | global.ingress.tls.enabled | bool | `false` |  |
 | global.ingress.tls.secretName | string | `"harness-ssl"` |  |
 | global.loadbalancerURL | string | `"test@harness.io"` |  |
+| lifecycleHooks | object | `{}` |  |
 | maxSurge | int | `1` |  |
 | maxUnavailable | int | `0` |  |
 | memory | int | `4096` |  |
@@ -44,8 +56,7 @@ A Helm chart for Kubernetes
 | pushpin.image.pullPolicy | string | `"IfNotPresent"` |  |
 | pushpin.image.registry | string | `"docker.io"` |  |
 | pushpin.image.repository | string | `"harness/ff-pushpin-signed"` |  |
-| pushpin.image.tag | string | `"1.0.3"` |  |
-| pushpin.resources.limits.cpu | int | `1` |  |
+| pushpin.image.tag | string | `"1.0.11"` |  |
 | pushpin.resources.limits.memory | string | `"2048Mi"` |  |
 | pushpin.resources.requests.cpu | int | `1` |  |
 | pushpin.resources.requests.memory | string | `"2048Mi"` |  |
@@ -55,7 +66,6 @@ A Helm chart for Kubernetes
 | pushpinworker.image.registry | string | `"docker.io"` |  |
 | pushpinworker.image.repository | string | `"harness/ff-pushpin-worker-signed"` |  |
 | pushpinworker.image.tag | string | `"1.1073.0"` |  |
-| pushpinworker.resources.limits.cpu | int | `1` |  |
 | pushpinworker.resources.limits.memory | string | `"2048Mi"` |  |
 | pushpinworker.resources.requests.cpu | int | `1` |  |
 | pushpinworker.resources.requests.memory | string | `"2048Mi"` |  |
