@@ -24,18 +24,12 @@ spec:
         # check if curl is install or run this command from within the image.
         # command: ["/bin/bash", "-c", "curl -sf -XPOST http://127.0.0.1:15020/quitquitquit" ]
         env:
+          {{- include "harnesscommon.dbconnection.timescaleEnv" (dict "passwordVariableName" "DB_PASS" "userVariableName" "DB_USER" "context" $) | indent 10}}
           - name: DB_DRIVER
             valueFrom:
               configMapKeyRef:
                 name: ff-service
                 key: DB_DRIVER
-          - name : DB_PASS
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.timescaleSecret.password.name }}
-                key: {{ .Values.timescaleSecret.password.key }}
-          - name: DB_USER
-            value: postgres
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:
@@ -95,18 +89,12 @@ spec:
         # check if curl is install or run this command from within the image.
         # command: ["/bin/bash", "-c", "curl -sf -XPOST http://127.0.0.1:15020/quitquitquit" ]
         env:
+          {{- include "harnesscommon.dbconnection.timescaleEnv" (dict "passwordVariableName" "DB_PASS" "userVariableName" "DB_USER" "context" $) | indent 10}}
           - name: DB_DRIVER
             valueFrom:
               configMapKeyRef:
                 name: ff-service
                 key: ANALYTICS_DB_DRIVER
-          - name : DB_PASS
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.timescaleSecret.password.name }}
-                key: {{ .Values.timescaleSecret.password.key }}
-          - name: DB_USER
-            value: postgres
           - name: DB_HOST
             valueFrom:
               configMapKeyRef:

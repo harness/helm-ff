@@ -49,12 +49,12 @@ data:
   GIT_SYNC_ENABLED: "true"
   GIT_SYNC_WEBHOOK_LISTEN_ADDR: "localhost:3001"
   SEGMENT_API_KEY: CFCommonVariable
-  ANALYTICS_DB_HOST: 'timescaledb-single-chart.{{ .Release.Namespace }}'
-  ANALYTICS_DB_PORT: "5432"
+  ANALYTICS_DB_HOST: {{ include "harnesscommon.dbconnection.timescaleHost" (dict "context" $) }}
+  ANALYTICS_DB_PORT: {{ include "harnesscommon.dbconnection.timescalePort" (dict "context" $) | quote }}
   ANALYTICS_DB_NAME: harnesscf
-  DB_HOST: 'timescaledb-single-chart.{{ .Release.Namespace }}'
+  DB_HOST: {{ include "harnesscommon.dbconnection.timescaleHost" (dict "context" $) }}
   DB_NAME: cf_db
-  DB_PORT: "5432"
+  DB_PORT: {{ include "harnesscommon.dbconnection.timescalePort" (dict "context" $) | quote }}
   PLATFORM_SECRET_KEY: IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM
   AUTH_SECRET: IC04LYMBf1lDP5oeY4hupxd4HJhLmN6azUku3xEbeE3SUx5G3ZYzhbiwVtK4i7AmqyU9OZkwB4v8E9qM
   {{- if .Values.global.opa.enabled }}

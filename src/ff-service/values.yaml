@@ -32,6 +32,14 @@ global:
       extraArgs: ""
     timescaledb:
       installed: true
+      protocol: "jdbc:postgresql"
+      # --  provide default values if mongo.installed is set to false
+      hosts:
+        - timescaledb-single-chart:543210
+      secretName: ""
+      userKey: ""
+      passwordKey: ""
+      extraArgs: ""
 replicaCount: 1
 maxSurge: 1
 maxUnavailable: 0
