@@ -15,7 +15,21 @@ global:
       enabled: false
       secretName: harness-ssl
   imagePullSecrets: []
-
+  database:
+    mongo:
+      installed: true
+    redis:
+      installed: true
+      protocol: "redis"
+      # --  provide default values if redis.installed is set to false
+      hosts:
+        - redis:6379
+      secretName: "redis-secret"
+      userKey: "redis-user"
+      passwordKey: "redis-password"
+      extraArgs: ""
+    timescaledb:
+      installed: true
 replicaCount: 1
 maxSurge: 1
 maxUnavailable: 0
