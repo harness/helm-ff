@@ -34,13 +34,13 @@ A Helm chart for Kubernetes
 | global.database.redis.protocol | string | `"redis"` |  |
 | global.database.redis.secretName | string | `"redis-secret"` |  |
 | global.database.redis.userKey | string | `"redis-user"` |  |
-| global.database.timescaledb.extraArgs | string | `"yz"` |  |
+| global.database.timescaledb.extraArgs | string | `""` |  |
 | global.database.timescaledb.hosts | list | `["timescaledb-single-chart:543210"]` | provide default values if mongo.installed is set to false |
-| global.database.timescaledb.installed | bool | `false` |  |
-| global.database.timescaledb.passwordKey | string | `"xz"` |  |
+| global.database.timescaledb.installed | bool | `true` |  |
+| global.database.timescaledb.passwordKey | string | `""` |  |
 | global.database.timescaledb.protocol | string | `"jdbc:postgresql"` |  |
-| global.database.timescaledb.secretName | string | `"xyz"` |  |
-| global.database.timescaledb.userKey | string | `"xz"` |  |
+| global.database.timescaledb.secretName | string | `""` |  |
+| global.database.timescaledb.userKey | string | `""` |  |
 | global.ha | bool | `false` |  |
 | global.imagePullSecrets | list | `[]` |  |
 | global.ingress.className | string | `"nginx"` |  |
