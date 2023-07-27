@@ -90,11 +90,12 @@ spec:
           resources:
               {{- toYaml .Values.resources | nindent 12 }}
           env:
-            {{- include "harnesscommon.dbconnection.redisEnv" (dict "context" .Values.global.database.redis "userVariableName" "EVENTS_CONFIG_REDIS_USERNAME" "passwordVariableName" "EVENTS_FRAMEWORK_REDIS_PASSWORD") | indent 12 }}
             {{- include "harnesscommon.dbconnection.timescaleSslEnv" (dict "enableSslVariableName" "SSL_MODE" "sslModeValue" "require" "context" $ ) | nindent 12 }}
             {{- include "harnesscommon.dbconnection.timescaleSslEnv" (dict "enableSslVariableName" "ANALYTICS_SSL_MODE" "sslModeValue" "require" "context" $ ) | nindent 12 }}
             {{- include "harnesscommon.dbconnection.timescaleEnv" (dict "passwordVariableName" "ANALYTICS_DB_PASS" "userVariableName" "ANALYTICS_DB_USER" "context" $) | indent 12}}
             {{- include "harnesscommon.dbconnection.timescaleEnv" (dict "passwordVariableName" "DB_PASS" "userVariableName" "DB_USER" "context" $) | indent 12}}
+            {{- include "harnesscommon.dbconnection.redisEnv" (dict "context" .Values.global.database.redis "userVariableName" "EVENTS_FRAMEWORK_REDIS_USERNAME" "passwordVariableName" "EVENTS_FRAMEWORK_REDIS_PASSWORD") | indent 12 }}
+            {{- include "harnesscommon.dbconnection.redisEnv" (dict "context" .Values.global.database.redis "userVariableName" "CF_REDIS_USERNAME" "passwordVariableName" "CF_REDIS_PASSWORD") | indent 12 }}
           envFrom:
           - configMapRef:
               name: ff-service
