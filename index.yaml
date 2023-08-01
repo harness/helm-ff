@@ -3,6 +3,23 @@ entries:
   ff:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-08-01T05:30:55.537982403Z"
+    dependencies:
+    - name: ff-service
+      repository: file://../ff-service
+      version: 0.6.x
+    - name: ff-pushpin-service
+      repository: file://../ff-pushpin-service
+      version: 0.6.x
+    description: A Helm chart for harness Feature Flags module
+    digest: eaeabfeab47344d90d7d475cb557073e86d869c8ecdd3d668cbdef6e7e0090fc
+    name: ff
+    type: application
+    urls:
+    - https://github.com/harness/helm-ff/releases/download/ff-0.9.0/ff-0.9.0.tgz
+    version: 0.9.0
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-06-30T05:27:45.972447225Z"
     dependencies:
     - name: ff-service
@@ -208,6 +225,20 @@ entries:
   ff-pushpin-service:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-08-01T05:30:55.699909886Z"
+    dependencies:
+    - name: harness-common
+      repository: https://harness.github.io/helm-common
+      version: 1.x.x
+    description: A Helm chart for Kubernetes
+    digest: 2fdaba00bb2e286bc624588b9c3cc6968aa632fb242a4e2b2e210fd9525992fc
+    name: ff-pushpin-service
+    type: application
+    urls:
+    - https://github.com/harness/helm-ff/releases/download/ff-pushpin-service-0.6.0/ff-pushpin-service-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-06-14T18:59:05.35192201Z"
     dependencies:
     - name: harness-common
@@ -263,6 +294,20 @@ entries:
     - https://github.com/harness/helm-ff/releases/download/ff-pushpin-service-0.2.8/ff-pushpin-service-0.2.8.tgz
     version: 0.2.8
   ff-service:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-08-01T05:30:56.136749145Z"
+    dependencies:
+    - name: harness-common
+      repository: https://harness.github.io/helm-common
+      version: 1.x.x
+    description: A Helm chart for Kubernetes
+    digest: bac10bdfd81d74523fd6fe12c29f130c7a6f466e0910b0f3508cbbe22f58f173
+    name: ff-service
+    type: application
+    urls:
+    - https://github.com/harness/helm-ff/releases/download/ff-service-0.6.0/ff-service-0.6.0.tgz
+    version: 0.6.0
   - apiVersion: v2
     appVersion: 0.0.1
     created: "2023-06-14T18:59:05.53866575Z"
@@ -337,4 +382,4 @@ entries:
     urls:
     - https://github.com/harness/helm-ff/releases/download/harness-ff-0.3.0/harness-ff-0.3.0.tgz
     version: 0.3.0
-generated: "2023-06-30T05:27:46.315654307Z"
+generated: "2023-08-01T05:30:56.136896035Z"
